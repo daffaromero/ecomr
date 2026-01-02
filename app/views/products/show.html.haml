@@ -1,0 +1,6 @@
+%h1= @product.title
+%p= @product.description
+%p
+  Price:
+  = number_to_currency(@product.price)
+= button_to 'Add to Cart', add_item_cart_path(product_id: @product.id), method: :post

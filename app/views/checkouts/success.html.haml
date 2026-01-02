@@ -1,0 +1,11 @@
+.checkout-success
+  %h1 Payment Successful!
+  
+  .success-message
+    %p Thank you for your purchase. Your payment has been processed successfully.
+    %p
+      Order ID:
+      = @session.id
+
+  .actions
+    = link_to 'Continue Shopping', products_path, class: 'btn btn-primary'

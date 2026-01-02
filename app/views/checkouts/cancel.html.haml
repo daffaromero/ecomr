@@ -1,0 +1,10 @@
+.checkout-cancel
+  %h1 Payment Cancelled
+  
+  .cancel-message
+    %p Your payment was cancelled. No charges have been made.
+    %p If you experienced any issues, please contact our support team.
+
+  .actions
+    = link_to 'Return to Cart', cart_path, class: 'btn btn-primary'
+    = link_to 'Continue Shopping', products_path, class: 'btn btn-secondary'
