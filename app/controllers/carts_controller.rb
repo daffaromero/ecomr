@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+  before_action :authenticate_user!
+
   # Defining basic CRUD actions for Cart resource
   def show
     @cart_items = current_cart

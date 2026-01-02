@@ -1,4 +1,6 @@
 class CheckoutsController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
     cart = current_cart
     
@@ -39,6 +41,26 @@ class CheckoutsController < ApplicationController
 
   def success
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
+    
+    # Create order record
+    cart = current_cart
+    
+    @order = current_user.orders.create!(
+      stripe_session_id: @session.id,
+      total: @session.amount_total / 100.0,
+      status: 'completed'
+    )
+
+    # Create order items
+    cart.each do |product_id, details|
+      product = Product.find(product_id)
+      @order.order_items.create!(
+        product: product,
+        quantity: details['quantity'],
+        price: product.price
+      )
+    end
+    
     session[:cart] = {} # Clear the cart after successful payment
   end
 

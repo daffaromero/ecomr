@@ -1,0 +1,24 @@
+%h1 Order ##{@order.id}
+
+.order-details
+  %p Date: #{@order.created_at.strftime('%B %d, %Y')}
+  %p Status: #{@order.status}
+  %p Total: #{number_to_currency(@order.total)}
+
+%h2 Items
+%table
+  %thead
+    %tr
+      %th Product
+      %th Price
+      %th Quantity
+      %th Subtotal
+  %tbody
+    - @order.order_items.each do |item|
+      %tr
+        %td= link_to item.product.name, item.product
+        %td= number_to_currency(item.price)
+        %td= item.quantity
+        %td= number_to_currency(item.price * item.quantity)
+
+= link_to 'Back to Orders', orders_path

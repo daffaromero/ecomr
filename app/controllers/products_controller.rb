@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+   before_action :authenticate_user!, except: [:index, :show]
    # Defining basic CRUD actions for Product resource
 
    def index

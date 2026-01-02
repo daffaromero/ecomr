@@ -2,14 +2,28 @@
 %html
   %head
     %meta{charset: "utf-8"}
-    %title Ecomr
+    %title Store
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     %script{src: "https://js.stripe.com/v3/"}
     = csrf_meta_tags
   %body
-    - if flash[:notice]
-      .alert.alert-success= flash[:notice]
-    - if flash[:alert]
-      .alert.alert-danger= flash[:alert]
-    = yield
+    %nav.navbar
+      .container
+        = link_to 'Store', root_path, class: 'brand'
+        .nav-links
+          = link_to 'Products', products_path
+          = link_to 'Cart', cart_path
+          - if user_signed_in?
+            %span.user-email= current_user.email
+            = link_to 'Logout', destroy_user_session_path, method: :delete
+          - else
+            = link_to 'Sign Up', new_user_registration_path
+            = link_to 'Login', new_user_session_path
+    
+    .container
+      - if flash[:notice]
+        .alert.alert-success= flash[:notice]
+      - if flash[:alert]
+        .alert.alert-danger= flash[:alert]
+      = yield

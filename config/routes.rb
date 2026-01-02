@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     delete 'remove_item/:product_id', to: 'carts#remove_item', as: :remove_item
   end
 
+  resources :orders, only: [:index, :show]
+
   post 'checkout/create', to: 'checkouts#create'
   get 'checkout/success', to: 'checkouts#success'
   get 'checkout/cancel', to: 'checkouts#cancel'

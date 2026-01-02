@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  stripe_session_id: MyString
+  total: 9.99
+  status: MyString
+
+two:
+  user_id: 
+  stripe_session_id: MyString
+  total: 9.99
+  status: MyString

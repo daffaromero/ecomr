@@ -1,0 +1,22 @@
+.orders-container
+  %h1 Orders
+
+  %table.table
+    %thead
+      %tr
+        %th Order #
+        %th Customer
+        %th Date
+        %th Total
+        %th Status
+        %th Actions
+    %tbody
+      - @orders.each do |order|
+        %tr
+          %td= order.id
+          %td= order.user.email
+          %td= order.created_at.strftime('%Y-%m-%d')
+          %td= number_to_currency(order.total)
+          %td= order.status
+          %td
+            = link_to 'View', order_path(order), class: 'btn btn-sm btn-primary'
