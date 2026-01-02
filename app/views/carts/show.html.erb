@@ -13,3 +13,5 @@
 <% else %>
   <p>Your cart is empty.</p>
 <% end %>
+
+<%= button_to 'Checkout with Stripe', checkout_create_path(product_id: product.id), remote: true %>
