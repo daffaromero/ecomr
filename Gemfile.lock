@@ -56,6 +56,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.5.0)
+    dotenv-rails (2.5.0)
+      dotenv (= 2.5.0)
+      railties (>= 3.2, < 6.0)
     erubis (2.7.0)
     execjs (2.10.0)
     ffi (1.15.5)
@@ -179,6 +183,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
+  dotenv-rails
   ffi (< 1.16)
   haml (~> 4.0)
   jbuilder (~> 2.0)

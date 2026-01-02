@@ -3,8 +3,8 @@
 - if @cart_items.any?
   - @cart_items.each do |product_id, details|
     - product = Product.find(product_id)
-    %div
-      %h3= product.title
+    %div.cart-item
+      %h3= product.name
       %p
         Quantity:
         = details['quantity']
@@ -12,7 +12,15 @@
         Price:
         = number_to_currency(product.price * details['quantity'])
       = button_to 'Remove', remove_item_cart_path(product_id: product.id), method: :delete
+  
+  %div.cart-total
+    %h3
+      Total:
+      - total = @cart_items.sum { |product_id, details| Product.find(product_id).price * details['quantity'] }
+      = number_to_currency(total)
+  
+  = button_to 'Checkout with Stripe', checkout_create_path, remote: true, class: 'btn btn-primary'
+  = link_to 'Continue Shopping', products_path, class: 'btn btn-secondary'
 - else
   %p Your cart is empty.
-
-= button_to 'Checkout with Stripe', checkout_create_path(product_id: product.id), remote: true
+  = link_to 'Browse Products', products_path, class: 'btn btn-primary'

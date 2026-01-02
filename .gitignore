@@ -17,4 +17,5 @@
 /tmp
 
 # Credentials
-/config/credentials.yml.enc
+/config/secrets.yml
+/.env
