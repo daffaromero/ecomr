@@ -4,3 +4,8 @@
   Price:
   = number_to_currency(@product.price)
 = button_to 'Add to Cart', add_item_cart_path(product_id: @product.id), method: :post
+
+- if user_signed_in?
+  .actions
+    = link_to 'Edit', edit_product_path(@product), class: 'btn btn-secondary'
+    = link_to 'Delete', product_path(@product), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
